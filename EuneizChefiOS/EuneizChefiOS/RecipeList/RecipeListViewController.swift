@@ -8,7 +8,8 @@
 import UIKit
 
 class RecipeListViewController: UIViewController {
-
+    let RECIPEDETAILS_SEGUE = "ShowRecipeDetailsSegue"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

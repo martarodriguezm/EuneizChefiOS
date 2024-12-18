@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchViewController: UIViewController {
+    let RECIPELIST_SEGUE = "ShowRecipeListSegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()

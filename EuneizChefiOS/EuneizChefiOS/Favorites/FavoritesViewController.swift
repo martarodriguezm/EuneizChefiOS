@@ -8,6 +8,7 @@
 import UIKit
 
 class FavoritesViewController: UIViewController {
+    let RECIPEDETAILS_SEGUE = "ShowRecipeDetailsSegue"
 
     override func viewDidLoad() {
         super.viewDidLoad()

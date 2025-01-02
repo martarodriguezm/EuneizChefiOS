@@ -16,40 +16,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7I-T2-Kfv">
-                                <rect key="frame" x="10" y="753.33333333333337" width="373" height="54.666666666666629"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Z7I-T2-Kfv">
+                                <rect key="frame" x="10" y="354.33333333333326" width="373" height="453.66666666666674"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ud2-cI-eD5">
-                                        <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="54.666666666666664"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="385" translatesAutoresizingMaskIntoConstraints="NO" id="ud2-cI-eD5">
+                                        <rect key="frame" x="0.0" y="0.0" width="196.33333333333334" height="453.66666666666669"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYm-Ob-v60">
-                                                <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="34.333333333333336"/>
+                                                <rect key="frame" x="52.000000000000007" y="0.0" width="92.666666666666686" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Favorites"/>
+                                                <connections>
+                                                    <segue destination="Nc0-2I-DDF" kind="show" id="5Hn-j1-ydP"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QI0-eC-3hW">
-                                                <rect key="frame" x="0.0" y="34.333333333333258" width="186.66666666666666" height="20.333333333333329"/>
+                                                <rect key="frame" x="77.666666666666671" y="419.33333333333331" width="41.333333333333329" height="34.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="o9h-wm-DL0">
-                                        <rect key="frame" x="186.66666666666663" y="0.0" width="186.33333333333337" height="54.666666666666664"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="383" translatesAutoresizingMaskIntoConstraints="NO" id="o9h-wm-DL0">
+                                        <rect key="frame" x="202.33333333333337" y="1" width="170.66666666666663" height="451.66666666666669"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-VJ-PJP">
-                                                <rect key="frame" x="0.0" y="0.0" width="186.33333333333334" height="34.333333333333336"/>
+                                                <rect key="frame" x="46.66666666666665" y="0.0" width="77.333333333333314" height="34.333333333333336"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Search"/>
+                                                <connections>
+                                                    <segue destination="evK-gi-uvU" kind="show" id="Chu-30-PFc"/>
+                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-1e-7P2">
-                                                <rect key="frame" x="0.0" y="34.333333333333258" width="186.33333333333334" height="20.333333333333329"/>
+                                                <rect key="frame" x="64.666666666666657" y="417.33333333333331" width="41.333333333333343" height="34.333333333333314"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                     </stackView>
                                 </subviews>
                             </stackView>
@@ -65,8 +73,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SuQ-Mk-u35">
-                                <rect key="frame" x="25" y="184" width="341" height="56"/>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="SuQ-Mk-u35">
+                                <rect key="frame" x="25" y="183.66666666666666" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="lSh-YL-z8J"/>
@@ -92,14 +100,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="5ZV-Dt-Rli"/>
                     <connections>
+                        <outlet property="favoritesButton" destination="IYm-Ob-v60" id="alj-CQ-X2G"/>
                         <outlet property="searchBar" destination="SuQ-Mk-u35" id="rRn-Bt-q4N"/>
+                        <outlet property="searchButton" destination="8SC-VJ-PJP" id="r8O-yr-Xtu"/>
                         <segue destination="Nc0-2I-DDF" kind="show" identifier="ShowFavoritesSegue" id="YPB-hD-L7r"/>
                         <segue destination="evK-gi-uvU" kind="show" identifier="ShowSearchSegue" id="DxQ-A9-ah6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1815" y="130"/>
+            <point key="canvasLocation" x="1814.5038167938931" y="129.57746478873241"/>
         </scene>
         <!--Favorites View Controller-->
         <scene sceneID="hjm-jH-bDj">
@@ -163,8 +173,8 @@
                                                         <constraint firstAttribute="height" constant="50" id="1XP-yD-NI1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJS-7Q-4Nc">
-                                                    <rect key="frame" x="111" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJS-7Q-4Nc">
+                                                    <rect key="frame" x="120" y="21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -173,6 +183,7 @@
                                             <constraints>
                                                 <constraint firstItem="meu-Py-cmA" firstAttribute="leading" secondItem="Atj-h9-DgZ" secondAttribute="leading" id="QEb-hM-Sx1"/>
                                                 <constraint firstAttribute="bottom" secondItem="meu-Py-cmA" secondAttribute="bottom" id="aur-rx-cdM"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aJS-7Q-4Nc" secondAttribute="trailing" constant="20" symbolic="YES" id="hux-x0-hGb"/>
                                                 <constraint firstItem="aJS-7Q-4Nc" firstAttribute="top" secondItem="Atj-h9-DgZ" secondAttribute="topMargin" constant="10" id="jGE-4Y-5k5"/>
                                                 <constraint firstItem="aJS-7Q-4Nc" firstAttribute="leading" secondItem="Atj-h9-DgZ" secondAttribute="leadingMargin" constant="100" id="lEo-Na-KQl"/>
                                                 <constraint firstItem="meu-Py-cmA" firstAttribute="top" secondItem="Atj-h9-DgZ" secondAttribute="top" id="yyS-QV-CCz"/>
@@ -239,10 +250,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="DxQ-A9-ah6"/>
         <segue reference="DHk-sM-XkZ"/>
-        <segue reference="5o4-vD-7RY"/>
+        <segue reference="1RX-4E-mT3"/>
+        <segue reference="5Hn-j1-ydP"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

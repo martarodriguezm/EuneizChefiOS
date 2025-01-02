@@ -14,11 +14,22 @@ class ViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var favoritesButton: UIButton!
+    
+    @IBOutlet weak var searchButton: UIButton!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func onFavoritesButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: FAVORITES_SEGUE, sender: nil)
+    }
+    
+    @IBAction func onSearchButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: SEARCH_SEGUE, sender: nil)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -34,5 +45,15 @@ class ViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == FAVORITES_SEGUE {
+            if segue.destination is FavoritesViewController {
+                // Configura favoritos si es necesario
+            }
+        } else if segue.identifier == SEARCH_SEGUE {
+            if segue.destination is SearchViewController {
+                // Configura búsqueda si es necesario
+            }
+        }
+    }
 }
-

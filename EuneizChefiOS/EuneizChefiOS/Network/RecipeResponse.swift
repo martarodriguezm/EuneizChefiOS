@@ -14,6 +14,7 @@ struct Recipe: Codable {
     let strMeal: String
     let strMealThumb: String
     let strArea: String?
+    let strCategory: String?
 }
 
 // Modelo para la respuesta de áreas
@@ -34,4 +35,12 @@ struct CategoryResponse: Codable {
 // Modelo para cada categoría
 struct Category: Codable {
     let strCategory: String
+}
+
+struct FavoriteRecipe: Codable {
+    let idMeal: String
+    let strMeal: String
+    let strMealThumb: String
+    let strArea: String?
+    let strCategory: String?
 }

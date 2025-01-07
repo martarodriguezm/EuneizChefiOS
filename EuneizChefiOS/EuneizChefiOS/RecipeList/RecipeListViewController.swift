@@ -14,6 +14,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var query: String?
     // Arreglo para almacenar las recetas obtenidas de la API
     var recipes: [Recipe] = []
+    var availableAreas: [String] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -55,10 +56,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Función que verifica si el query es un área o no
     func isAreaSearch(_ query: String) -> Bool {
-        // Si el query coincide con alguna de las áreas predefinidas, es una búsqueda por área
-        let areas = ["American", "British", "Canadian", "Chinese", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Spanish", "Thai"]  // Lista de áreas conocidas
-        return areas.contains(query)  // Retorna true si el query está en la lista de áreas
-    }
+            return availableAreas.contains(query)
+        }
     
     // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,6 +70,7 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.configureCell(recipe: recipe)
         return cell
     }
+    
 }
 
 // MARK: - Extension for loading images

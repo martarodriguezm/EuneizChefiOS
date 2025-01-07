@@ -8,18 +8,28 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     let RECIPELIST_SEGUE = "ShowRecipeListSegue"
-
+    let FAVORITES_SEGUE = "ShowFavoritesSegue"
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var favoritesButton: UIButton!
+    
     @IBOutlet weak var areasCollectionView: UICollectionView! // Colección para las áreas
     @IBOutlet weak var categoriesCollectionView: UICollectionView! // Colección para las categorías
     
+    // Variable para almacenar la consulta de búsqueda
+    var searchQuery: String?
+
     var areas: [String] = []
     var categories: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.delegate = self
         
         // Configuración de las colecciones
         areasCollectionView.delegate = self
@@ -32,6 +42,23 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         fetchAreas()
         fetchCategories()
     }
+    
+    @IBAction func onFavoritesButtonTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: FAVORITES_SEGUE, sender: nil)
+    }
+    
+    // Este método se ejecuta cuando se presiona el botón de búsqueda en el teclado
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Verifica que el texto no esté vacío
+        guard let query = searchBar.text, !query.isEmpty else { return }
+            
+        // Guarda la consulta en la variable
+        searchQuery = query
+            
+        // Realiza la transición al siguiente ViewController usando un segue
+        performSegue(withIdentifier: RECIPELIST_SEGUE, sender: self)
+    }
+    
 
     // Función para obtener las áreas disponibles desde la API de MealDB
     func fetchAreas() {
@@ -110,11 +137,17 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     // Prepara el segue para pasar el área seleccionada a RecipeListViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == RECIPELIST_SEGUE {
-            if let destinationVC = segue.destination as? RecipeListViewController,
-               let area = sender as? String {
-                // Pasa el área seleccionada a RecipeListViewController
-                destinationVC.query = area
+        if segue.identifier == RECIPELIST_SEGUE, let destinationVC = segue.destination as? RecipeListViewController {
+                    if let areaOrCategory = sender as? String {
+                        destinationVC.query = areaOrCategory
+                        destinationVC.availableAreas = self.areas
+                    } else if let searchQuery = searchQuery {
+                        destinationVC.query = searchQuery
+                        destinationVC.availableAreas = self.areas
+                    }
+        } else if segue.identifier == FAVORITES_SEGUE {
+            if segue.destination is FavoritesViewController {
+                // Configura favoritos si es necesario
             }
         }
     }

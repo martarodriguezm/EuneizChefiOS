@@ -13,55 +13,41 @@ class ItemViewCell: UITableViewCell {
     @IBOutlet weak var recipeNameLabel: UILabel!
     @IBOutlet weak var recipeCategoryLabel: UILabel!
     @IBOutlet weak var recipeAreaLabel: UILabel!
-    @IBOutlet weak var favIcon: UIView!
+    @IBOutlet weak var favIcon: UIImageView!
     
-    var recipe: Recipe?
+    var currentRecipe: Recipe?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Personaliza la celda si es necesario
-        setupFavoriteIcon()
-    }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleFavorite))
+                favIcon.isUserInteractionEnabled = true
+                favIcon.addGestureRecognizer(tapGesture)
+            }
     
-    // Puedes agregar una función para configurar la celda
     func configureCell(recipe: Recipe) {
-        self.recipe = recipe
+        currentRecipe = recipe
         recipeNameLabel.text = recipe.strMeal
         recipeCategoryLabel.text = recipe.strCategory
         recipeAreaLabel.text = recipe.strArea
         recipeImageView.loadImage(from: recipe.strMealThumb)
-        setupFavoriteIcon()
+        updateFavoriteIcon()
     }
     
+    @objc private func toggleFavorite() {
+            guard let recipe = currentRecipe else { return }
+            if FavoritesManager.shared.isFavorite(recipe) {
+                FavoritesManager.shared.removeFavorite(recipe)
+            } else {
+                FavoritesManager.shared.addFavorite(recipe)
+            }
+            updateFavoriteIcon()
+        }
     
-    // Configura el icono de favorito
-    private func setupFavoriteIcon() {
-        guard let recipe = recipe else { return }
-        let favorites = FavoriteManager.shared.loadFavorites()
-        if favorites.contains(where: { $0.idMeal == recipe.idMeal }) {
-            favIcon.backgroundColor = .yellow // El ícono se llena
-        } else {
-            favIcon.backgroundColor = .clear // El ícono está vacío
+    func updateFavoriteIcon() {
+            guard let recipe = currentRecipe else { return }
+            favIcon.image = FavoritesManager.shared.isFavorite(recipe) ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         }
     }
-    
-    @IBAction func toggleFavorite(_ sender: UITapGestureRecognizer) {
-        guard let recipe = recipe else { return }
-        
-        // Verifica si la receta está en favoritos
-        let favorites = FavoriteManager.shared.loadFavorites()
-        if favorites.contains(where: { $0.idMeal == recipe.idMeal }) {
-            // Si ya está en favoritos, la eliminamos
-            FavoriteManager.shared.removeFavorite(recipe: FavoriteRecipe(idMeal: recipe.idMeal, strMeal: recipe.strMeal, strMealThumb: recipe.strMealThumb, strArea: recipe.strArea, strCategory: recipe.strCategory))
-        } else {
-            // Si no está en favoritos, la agregamos
-            FavoriteManager.shared.addFavorite(recipe: FavoriteRecipe(idMeal: recipe.idMeal, strMeal: recipe.strMeal, strMealThumb: recipe.strMealThumb, strArea: recipe.strArea, strCategory: recipe.strCategory))
-        }
-        
-        // Actualiza el icono
-        setupFavoriteIcon()
-    }
-}
     // Extensión para UIImageView para cargar imágenes de manera asincrónica
     extension UIImageView {
         func loadImage(from urlString: String) {

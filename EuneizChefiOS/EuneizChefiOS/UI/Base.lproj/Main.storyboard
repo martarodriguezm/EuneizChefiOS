@@ -29,7 +29,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteRecipeCell" rowHeight="100" id="yhv-gY-sRQ" customClass="FavoriteRecipeCell" customModule="EuneizChefiOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="100" id="yhv-gY-sRQ" customClass="ItemViewCell" customModule="EuneizChefiOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="373" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="RecipeCell" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yhv-gY-sRQ" id="FhC-di-bIS">
@@ -38,6 +38,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xwY-Sj-nhC">
                                                     <rect key="frame" x="312" y="50.666666666666657" width="21" height="17.333333333333343"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O9p-2r-g4h">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -65,6 +66,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <gestureRecognizers/>
                                             <constraints>
                                                 <constraint firstItem="T4Q-WL-64J" firstAttribute="leading" secondItem="O9p-2r-g4h" secondAttribute="trailing" constant="20" id="1T5-Xh-HlL"/>
                                                 <constraint firstItem="O9p-2r-g4h" firstAttribute="leading" secondItem="FhC-di-bIS" secondAttribute="leading" id="2s6-cf-vWN"/>
@@ -81,7 +83,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="favIcon" destination="xwY-Sj-nhC" id="sMa-jd-OuM"/>
+                                            <outlet property="favIcon" destination="xwY-Sj-nhC" id="V7r-a2-PWQ"/>
                                             <outlet property="recipeAreaLabel" destination="7jy-Fu-wTJ" id="sjn-mG-iB1"/>
                                             <outlet property="recipeCategoryLabel" destination="T4Q-WL-64J" id="fCv-XN-KSN"/>
                                             <outlet property="recipeImageView" destination="O9p-2r-g4h" id="A4W-o3-HLL"/>
@@ -152,6 +154,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dRo-X0-td9">
                                                     <rect key="frame" x="312" y="50.666666666666657" width="21" height="17.333333333333343"/>
+                                                    <gestureRecognizers/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="meu-Py-cmA">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -194,8 +197,9 @@
                                                 <constraint firstItem="meu-Py-cmA" firstAttribute="top" secondItem="Atj-h9-DgZ" secondAttribute="top" id="yyS-QV-CCz"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
-                                            <outlet property="favIcon" destination="Atj-h9-DgZ" id="JhC-28-xa1"/>
+                                            <outlet property="favIcon" destination="dRo-X0-td9" id="xw0-Nb-zdo"/>
                                             <outlet property="recipeAreaLabel" destination="ViK-ql-HVC" id="kAV-C9-CAJ"/>
                                             <outlet property="recipeCategoryLabel" destination="6R6-GU-9Dc" id="KrL-1N-Urh"/>
                                             <outlet property="recipeImageView" destination="meu-Py-cmA" id="NSq-Up-pUk"/>

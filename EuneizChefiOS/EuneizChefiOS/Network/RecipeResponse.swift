@@ -36,11 +36,3 @@ struct CategoryResponse: Codable {
 struct Category: Codable {
     let strCategory: String
 }
-
-struct FavoriteRecipe: Codable {
-    let idMeal: String
-    let strMeal: String
-    let strMealThumb: String
-    let strArea: String?
-    let strCategory: String?
-}

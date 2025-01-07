@@ -8,36 +8,40 @@
 import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var tableView: UITableView!
     
-    var favoriteRecipes: [FavoriteRecipe] = []
-
+    private var favoriteRecipes: [Recipe] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-        // Cargar las recetas favoritas
-        loadFavoriteRecipes()
+        loadFavorites()
     }
-
-    func loadFavoriteRecipes() {
-        favoriteRecipes = FavoriteManager.shared.loadFavorites()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadFavorites()
+    }
+    
+    private func loadFavorites() {
+        favoriteRecipes = FavoritesManager.shared.getFavorites()
         tableView.reloadData()
     }
     
-    // MARK: - TableView DataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return favoriteRecipes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteRecipeCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! ItemViewCell
         let recipe = favoriteRecipes[indexPath.row]
-        cell.textLabel?.text = recipe.strMeal
+        cell.configureCell(recipe: recipe)
         return cell
     }
 }
+
 
     
 

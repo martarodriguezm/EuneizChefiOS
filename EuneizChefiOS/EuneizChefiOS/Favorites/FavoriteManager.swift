@@ -7,39 +7,53 @@
 
 import Foundation
 
-class FavoriteManager {
-    static let shared = FavoriteManager()
-    private let favoritesKey = "favoriteRecipesKey"
-    
-    // Obtener favoritos
-    func loadFavorites() -> [FavoriteRecipe] {
-        guard let data = UserDefaults.standard.data(forKey: favoritesKey),
-              let favorites = try? JSONDecoder().decode([FavoriteRecipe].self, from: data) else {
-            return []
-        }
-        return favorites
+class FavoritesManager {
+    static let shared = FavoritesManager()
+    private let favoritesFile = "favorites.json"
+    private var favorites: [Recipe] = []
+
+    private init() {
+        loadFavorites()
     }
-    
-    // Agregar receta a favoritos
-    func addFavorite(recipe: FavoriteRecipe) {
-        var favorites = loadFavorites()
+
+    func addFavorite(_ recipe: Recipe) {
         if !favorites.contains(where: { $0.idMeal == recipe.idMeal }) {
             favorites.append(recipe)
-            saveFavorites(favorites: favorites)
+            saveFavorites()
         }
     }
-    
-    // Eliminar receta de favoritos
-    func removeFavorite(recipe: FavoriteRecipe) {
-        var favorites = loadFavorites()
+
+    func removeFavorite(_ recipe: Recipe) {
         favorites.removeAll { $0.idMeal == recipe.idMeal }
-        saveFavorites(favorites: favorites)
+        saveFavorites()
     }
-    
-    // Guardar favoritos
-    private func saveFavorites(favorites: [FavoriteRecipe]) {
-        if let encoded = try? JSONEncoder().encode(favorites) {
-            UserDefaults.standard.set(encoded, forKey: favoritesKey)
+
+    func isFavorite(_ recipe: Recipe) -> Bool {
+        return favorites.contains(where: { $0.idMeal == recipe.idMeal })
+    }
+
+    func getFavorites() -> [Recipe] {
+        return favorites
+    }
+
+    private func saveFavorites() {
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(favorites) {
+            let url = getFileURL()
+            try? data.write(to: url)
         }
+    }
+
+    private func loadFavorites() {
+        let url = getFileURL()
+        if let data = try? Data(contentsOf: url) {
+            let decoder = JSONDecoder()
+            favorites = (try? decoder.decode([Recipe].self, from: data)) ?? []
+        }
+    }
+
+    private func getFileURL() -> URL {
+        let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentDirectory.appendingPathComponent(favoritesFile)
     }
 }

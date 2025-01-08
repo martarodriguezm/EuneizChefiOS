@@ -13,12 +13,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
     let RECIPELIST_SEGUE = "ShowRecipeListSegue"
     let FAVORITES_SEGUE = "ShowFavoritesSegue"
     
+    
+    @IBOutlet weak var welcomeLabelText: UILabel!
+    @IBOutlet weak var questionLabelText: UILabel!
+    @IBOutlet weak var discoverLabelText: UILabel!
+    @IBOutlet weak var byAreaLabelText: UILabel!
+    @IBOutlet weak var byCategoryLabelText: UILabel!
+    @IBOutlet weak var seeFavsLabelText: UILabel!
+    
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet weak var favoritesButton: UIButton!
-    
-    @IBOutlet weak var areasCollectionView: UICollectionView! // Colección para las áreas
-    @IBOutlet weak var categoriesCollectionView: UICollectionView! // Colección para las categorías
+    @IBOutlet weak var areasCollectionView: UICollectionView!
+    @IBOutlet weak var categoriesCollectionView: UICollectionView!
     
     // Variable para almacenar la consulta de búsqueda
     var searchQuery: String?
@@ -28,9 +34,19 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addFavoritesButton()
+        self.title="EuneizChef"
         
+        addFavoritesButton()
         searchBar.delegate = self
+        
+        //Strings
+        welcomeLabelText.text = String(localized: "welcomeLabelText")
+        questionLabelText.text = String(localized: "questionLabelText")
+        discoverLabelText.text = String(localized: "discoverLabelText")
+        byAreaLabelText.text = String(localized: "byAreaLabelText")
+        byCategoryLabelText.text = String(localized: "byCategoryLabelText")
+        seeFavsLabelText.text = String(localized: "seeFavsLabelText")
+        
         
         // Configuración de las colecciones
         areasCollectionView.delegate = self
@@ -39,7 +55,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
         categoriesCollectionView.delegate = self
         categoriesCollectionView.dataSource = self
                 
-        // Obtén las áreas y categorías de la API
+        // Obtener las áreas y categorías de la API
         fetchAreas()
         fetchCategories()
     }
@@ -48,7 +64,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
         performSegue(withIdentifier: FAVORITES_SEGUE, sender: nil)
     }
     
-    // Este método se ejecuta cuando se presiona el botón de búsqueda en el teclado
+    // Funión cuando se pulsa el botón de búsqueda en el teclado
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         // Verifica que el texto no esté vacío
         guard let query = searchBar.text, !query.isEmpty else { return }
@@ -56,7 +72,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
         // Guarda la consulta en la variable
         searchQuery = query
             
-        // Realiza la transición al siguiente ViewController usando un segue
+        // Navega al siguiente ViewController usando un segue
         performSegue(withIdentifier: RECIPELIST_SEGUE, sender: self)
     }
     
@@ -65,7 +81,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
     func fetchAreas() {
         let urlString = "https://www.themealdb.com/api/json/v1/1/list.php?a=list"
         
-        // Realiza la solicitud con Alamofire
+        // Solicitud con Alamofire
         AF.request(urlString).responseDecodable(of: AreaResponse.self) { response in
             switch response.result {
             case .success(let data):
@@ -120,8 +136,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
         }
     }
     
-    // MARK: - UICollectionView Delegate
-
     // Al seleccionar una celda, realiza una búsqueda y redirige a RecipeListViewController
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == areasCollectionView {
@@ -134,8 +148,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
     }
 
     
-    // MARK: - Prepare for Segue
-
     // Prepara el segue para pasar el área seleccionada a RecipeListViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == RECIPELIST_SEGUE, let destinationVC = segue.destination as? RecipeListViewController {

@@ -33,6 +33,11 @@
 			path = EuneizChefiOS;
 			sourceTree = "<group>";
 		};
+		59472B482D2E61FF0009F08D /* Supporting Files */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +55,7 @@
 		3F37EE162D131C620095AA68 = {
 			isa = PBXGroup;
 			children = (
+				59472B482D2E61FF0009F08D /* Supporting Files */,
 				3F37EE212D131C620095AA68 /* EuneizChefiOS */,
 				597C77BC2D24052000A5899D /* EuneizChefiOS.app */,
 			);
@@ -72,6 +78,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				3F37EE212D131C620095AA68 /* EuneizChefiOS */,
+				59472B482D2E61FF0009F08D /* Supporting Files */,
 			);
 			name = EuneizChefiOS;
 			packageProductDependencies = (
@@ -252,6 +259,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -308,6 +316,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

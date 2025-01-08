@@ -11,6 +11,7 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     
     let RECIPEDETAILS_SEGUE = "ShowRecipeDetailsSegue"
     
+    @IBOutlet weak var yourFavsLabelText: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     private var favoriteRecipes: [Recipe] = []
@@ -25,6 +26,8 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadFavorites()
+        //Strings
+        yourFavsLabelText.text = String(localized: "yourFavsLabelText")
     }
     
     private func loadFavorites() {

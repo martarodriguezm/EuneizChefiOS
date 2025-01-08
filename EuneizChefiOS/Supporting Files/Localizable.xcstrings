@@ -34,6 +34,28 @@
         }
       }
     },
+    "ingredientsLabelText" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingredients"
+          }
+        }
+      }
+    },
+    "instructionsLabelText" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instructions"
+          }
+        }
+      }
+    },
     "questionLabelText" : {
       "extractionState" : "manual",
       "localizations" : {

@@ -20,6 +20,9 @@ class ItemViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        // Permitir clickeo en la celda
+        self.isUserInteractionEnabled = true
+        
         // Agregar un borde gris y esquinas redondeadas a la celda
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 10  // Radio de las esquinas

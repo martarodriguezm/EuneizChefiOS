@@ -76,6 +76,21 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.configureCell(recipe: recipe)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipe = recipes[indexPath.row]
+        
+        // Realiza el segue de manera programática
+        performSegue(withIdentifier: RECIPEDETAILS_SEGUE, sender: recipe)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == RECIPEDETAILS_SEGUE,
+           let destinationVC = segue.destination as? RecipeDetailsViewController,
+           let recipe = sender as? Recipe {
+            destinationVC.recipeId = recipe.idMeal
+            print("Passing recipeId: \(recipe.idMeal)") // Para depuración
+        }
+    }
 }
 
 // MARK: - Extension for loading images

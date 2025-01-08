@@ -28,6 +28,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UICollectionV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addFavoritesButton()
         
         searchBar.delegate = self
         

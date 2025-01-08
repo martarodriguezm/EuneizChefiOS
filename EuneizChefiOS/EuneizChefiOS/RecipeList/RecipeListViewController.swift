@@ -21,6 +21,8 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addFavoritesButton()
+
         tableView.delegate = self
         tableView.dataSource = self
         

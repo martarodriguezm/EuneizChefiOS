@@ -13,7 +13,7 @@
         <!--Favorites View Controller-->
         <scene sceneID="hjm-jH-bDj">
             <objects>
-                <viewController id="Nc0-2I-DDF" customClass="FavoritesViewController" customModule="EuneizChefiOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritesViewController" id="Nc0-2I-DDF" customClass="FavoritesViewController" customModule="EuneizChefiOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MGk-21-IeU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -573,7 +573,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5o4-vD-7RY"/>
+        <segue reference="1RX-4E-mT3"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>

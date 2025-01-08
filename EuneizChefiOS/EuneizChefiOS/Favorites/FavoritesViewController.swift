@@ -9,6 +9,8 @@ import UIKit
 
 class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let RECIPEDETAILS_SEGUE = "ShowRecipeDetailsSegue"
+    
     @IBOutlet weak var tableView: UITableView!
     
     private var favoriteRecipes: [Recipe] = []
@@ -39,6 +41,20 @@ class FavoritesViewController: UIViewController, UITableViewDelegate, UITableVie
         let recipe = favoriteRecipes[indexPath.row]
         cell.configureCell(recipe: recipe)
         return cell
+    }
+    // MARK: - TableView Delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let recipe = favoriteRecipes[indexPath.row]
+        performSegue(withIdentifier: RECIPEDETAILS_SEGUE, sender: recipe)
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == RECIPEDETAILS_SEGUE, let destinationVC = segue.destination as? RecipeDetailsViewController {
+            if let recipe = sender as? Recipe {
+                destinationVC.recipeId = recipe.idMeal
+            }
+        }
     }
 }
 

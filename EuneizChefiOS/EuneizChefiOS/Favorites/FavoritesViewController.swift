@@ -7,14 +7,42 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
-    let RECIPEDETAILS_SEGUE = "ShowRecipeDetailsSegue"
-
+class FavoritesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    private var favoriteRecipes: [Recipe] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        loadFavorites()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadFavorites()
+    }
+    
+    private func loadFavorites() {
+        favoriteRecipes = FavoritesManager.shared.getFavorites()
+        tableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favoriteRecipes.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! ItemViewCell
+        let recipe = favoriteRecipes[indexPath.row]
+        cell.configureCell(recipe: recipe)
+        return cell
+    }
+}
+
+
     
 
     /*
@@ -27,4 +55,3 @@ class FavoritesViewController: UIViewController {
     }
     */
 
-}

@@ -19,6 +19,13 @@ class ItemViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // Agregar un borde gris y esquinas redondeadas a la celda
+        self.contentView.layer.masksToBounds = true
+        self.contentView.layer.cornerRadius = 10  // Radio de las esquinas
+        self.contentView.layer.borderWidth = 1    // Ancho del borde
+        self.contentView.layer.borderColor = UIColor.gray.cgColor // Color gris para el borde
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleFavorite))
                 favIcon.isUserInteractionEnabled = true
                 favIcon.addGestureRecognizer(tapGesture)
@@ -32,6 +39,9 @@ class ItemViewCell: UITableViewCell {
         recipeImageView.loadImage(from: recipe.strMealThumb)
         updateFavoriteIcon()
     }
+    override func layoutSubviews() {
+            super.layoutSubviews()
+        }
     
     @objc private func toggleFavorite() {
             guard let recipe = currentRecipe else { return }

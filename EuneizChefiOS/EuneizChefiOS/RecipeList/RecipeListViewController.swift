@@ -17,11 +17,17 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
     var availableAreas: [String] = []
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var categoryOrAreaLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Actualizar el label según la consulta o selección
+        if let query = query {
+            categoryOrAreaLabel.text = query
+        }
         
         fetchRecipes()
     }
@@ -70,7 +76,6 @@ class RecipeListViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.configureCell(recipe: recipe)
         return cell
     }
-    
 }
 
 // MARK: - Extension for loading images

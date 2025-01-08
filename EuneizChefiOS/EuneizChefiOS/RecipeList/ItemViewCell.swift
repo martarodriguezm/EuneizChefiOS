@@ -48,12 +48,28 @@ class ItemViewCell: UITableViewCell {
     
     @objc private func toggleFavorite() {
             guard let recipe = currentRecipe else { return }
+            
             if FavoritesManager.shared.isFavorite(recipe) {
                 FavoritesManager.shared.removeFavorite(recipe)
+                showAlert(title: "Removed from Favorites", message: "\(recipe.strMeal) has been removed from your favorites.")
             } else {
                 FavoritesManager.shared.addFavorite(recipe)
+                showAlert(title: "Added to Favorites", message: "\(recipe.strMeal) has been added to your favorites.")
             }
+            
             updateFavoriteIcon()
+        }
+    
+    private func showAlert(title: String, message: String) {
+            // Crear el UIAlertController
+            guard let viewController = self.parentViewController else { return } // Obtener el controlador de vista
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            
+            // Añadir un botón de acción
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            
+            // Presentar el alerta
+            viewController.present(alert, animated: true, completion: nil)
         }
     
     func updateFavoriteIcon() {
@@ -61,6 +77,20 @@ class ItemViewCell: UITableViewCell {
             favIcon.image = FavoritesManager.shared.isFavorite(recipe) ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         }
     }
+
+// Extensión para obtener el viewController del padre
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while let responder = parentResponder {
+            if let viewController = responder as? UIViewController {
+                return viewController
+            }
+            parentResponder = responder.next
+        }
+        return nil
+    }
+}
     // Extensión para UIImageView para cargar imágenes de manera asincrónica
     extension UIImageView {
         func loadImage(from urlString: String) {
